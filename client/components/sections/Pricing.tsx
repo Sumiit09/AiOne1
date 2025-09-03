@@ -24,7 +24,7 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <section className="py-16 md:py-24">
+    <section id="pricing" className="py-16 md:py-24">
       <div className="container mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center">Simple, transparent pricing</h2>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
