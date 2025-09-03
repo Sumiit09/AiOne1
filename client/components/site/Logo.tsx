@@ -1,13 +1,27 @@
 export default function Logo() {
   return (
     <div className="flex items-center gap-2">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F11ac23e87147423b8cbebe0ae1950090?format=webp&width=800"
-        alt="AiOne logo"
-        className="h-8 w-8 rounded-lg object-contain shadow-md"
-        width={32}
-        height={32}
-      />
+      <svg
+        className="h-8 w-8"
+        viewBox="0 0 64 64"
+        aria-label="AiOne logo"
+        role="img"
+      >
+        <defs>
+          <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor={`hsl(var(--brand-start))`} />
+            <stop offset="100%" stopColor={`hsl(var(--brand-end))`} />
+          </linearGradient>
+        </defs>
+        <path
+          d="M32 2 58 16v32L32 62 6 48V16z"
+          fill="none"
+          stroke="url(#g)"
+          strokeWidth="6"
+          strokeLinejoin="round"
+        />
+        <path d="M24 24 40 16 40 40 24 48z" fill="#0f1117" stroke="#0b0f1a" strokeWidth="2" />
+      </svg>
       <span className="text-lg font-extrabold tracking-tight">AiOne</span>
     </div>
   );
