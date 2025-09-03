@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div className="space-y-4">
             <Logo />
-            <p className="text-sm text-foreground/70 max-w-sm">Aione unifies GPT, Claude, Gemini, Mistral and more into one affordable, seamless interface.</p>
+            <p className="text-sm text-foreground/70 max-w-sm">AiOne unifies GPT, Claude, Gemini, Mistral and more into one affordable, seamless interface.</p>
           </div>
           <div className="md:justify-self-center">
             <nav className="grid gap-2 text-sm">
@@ -25,7 +25,7 @@ export default function Footer() {
             <a href="#" aria-label="LinkedIn" className="p-2 rounded-full bg-muted text-foreground/80 hover:text-white hover:shadow-xl transition-all hover:scale-105 hover:bg-gradient-to-r hover:from-[hsl(var(--brand-start))] hover:to-[hsl(var(--brand-end))]"><Linkedin className="h-5 w-5"/></a>
           </div>
         </div>
-        <div className="mt-8 text-xs text-foreground/60">© {new Date().getFullYear()} Aione. All rights reserved.</div>
+        <div className="mt-8 text-xs text-foreground/60">© {new Date().getFullYear()} AiOne. All rights reserved.</div>
       </div>
     </footer>
   );
