@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Orbit, Bug, Hexagon } from "lucide-react";
-import Starfield from "@/components/three/Starfield";
 
 const chips = [
   { icon: Sparkles, label: "DeepSeek" },
