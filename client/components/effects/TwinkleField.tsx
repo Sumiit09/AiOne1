@@ -8,7 +8,7 @@ interface Star {
   duration: number;
 }
 
-export default function TwinkleField({ count = 240 }: { count?: number }) {
+export default function TwinkleField({ count = 420 }: { count?: number }) {
   const [vw, setVw] = useState(0);
   useEffect(() => {
     const onResize = () => setVw(window.innerWidth);
@@ -37,7 +37,7 @@ export default function TwinkleField({ count = 240 }: { count?: number }) {
       {stars.map((s, i) => (
         <span
           key={i}
-          className="absolute rounded-sm bg-[#4FF3D3]/70 shadow-[0_0_6px_1px_rgba(79,243,211,0.35)] animate-twinkle"
+          className="absolute rounded-sm bg-[#4FF3D3] mix-blend-screen shadow-[0_0_8px_1px_rgba(79,243,211,0.55)] animate-twinkle"
           style={{
             left: `${s.left}%`,
             top: `${s.top}%`,
