@@ -10,7 +10,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-transparent to-muted/40">
+    <section id="features" className="py-16 md:py-24 bg-gradient-to-b from-transparent to-muted/40">
       <div className="container mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center">Features</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
