@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Orbit, Bug, Hexagon } from "lucide-react";
+import Starfield from "@/components/three/Starfield";
 
 const chips = [
   { icon: Sparkles, label: "DeepSeek" },
@@ -11,6 +12,7 @@ const chips = [
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0B0F1A] text-white">
+      <Starfield />
       <div className="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_0%,black,transparent)]">
         <div className="absolute -top-40 left-1/2 h-[520px] w-[980px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] blur-3xl" />
       </div>
