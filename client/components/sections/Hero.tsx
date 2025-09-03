@@ -12,12 +12,6 @@ export default function Hero() {
         <div className="mt-8 flex items-center justify-center gap-3">
           <Button className="h-12 px-8 text-base bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl hover:translate-y-[-1px] transition-all">Get Started</Button>
         </div>
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-foreground/60">
-          <span className="rounded-full border px-3 py-1 bg-white/60 backdrop-blur">OpenAI GPT</span>
-          <span className="rounded-full border px-3 py-1 bg-white/60 backdrop-blur">Claude</span>
-          <span className="rounded-full border px-3 py-1 bg-white/60 backdrop-blur">Gemini</span>
-          <span className="rounded-full border px-3 py-1 bg-white/60 backdrop-blur">Mistral</span>
-        </div>
       </div>
     </section>
   );
