@@ -1,11 +1,20 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Starfield from "@/components/three/Starfield";
 import TwinkleField from "@/components/effects/TwinkleField";
 import DotGrid from "@/components/effects/DotGrid";
+import { useLocation } from "react-router-dom";
 
 export default function Layout({ children }: PropsWithChildren) {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = decodeURIComponent(location.hash.replace('#', ''));
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location.hash]);
   return (
     <div className="min-h-screen flex flex-col bg-[#0B0F1A] text-foreground relative">
       <div className="fixed inset-0 z-0 pointer-events-none">
