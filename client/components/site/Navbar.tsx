@@ -19,14 +19,17 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-2">
           <Logo />
         </Link>
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <a href="#features" className="hover:text-white/90 text-white/80">Features</a>
-          <a href="#pricing" className="hover:text-white/90 text-white/80">Pricing</a>
-          <a href="#reviews" className="hover:text-white/90 text-white/80">Reviews</a>
-        </nav>
-        <div className="flex items-center gap-3">
-          <Button variant="outline" className="hidden sm:inline-flex border-white/20 bg-transparent text-white hover:bg-white/10">Login</Button>
-          <Button className="hidden sm:inline-flex bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl transition-shadow">Get Started</Button>
+        <div className="flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <Link to="/about" className="hover:text-white/90 text-white/80">About</Link>
+            <a href="#features" className="hover:text-white/90 text-white/80">Features</a>
+            <a href="#pricing" className="hover:text-white/90 text-white/80">Pricing</a>
+            <a href="#reviews" className="hover:text-white/90 text-white/80">Reviews</a>
+          </nav>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" className="hidden sm:inline-flex border-white/20 bg-transparent text-white hover:bg-white/10">Login</Button>
+            <Button className="hidden sm:inline-flex bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl transition-shadow">Get Started</Button>
+          </div>
         </div>
       </div>
     </header>
