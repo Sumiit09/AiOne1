@@ -5,7 +5,7 @@ import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
 
 
-function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16, color = "#ffffff" }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; color?: string; }) {
+function Planet({ url, radius, size, speed, phase = 0, opacity = 0.2 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
   const group = useRef<Group>(null);
   const [tex, setTex] = useState<Texture | null>(null);
   const [failed, setFailed] = useState(false);
@@ -46,12 +46,12 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16, color = "
           {tex && !failed ? (
             <mesh>
               <planeGeometry args={[size, size]} />
-              <meshBasicMaterial map={tex} color={color} transparent opacity={opacity} depthWrite={false} />
+              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} />
             </mesh>
           ) : (
             <mesh>
               <circleGeometry args={[size * 0.5, 48]} />
-              <meshBasicMaterial color={color} transparent opacity={opacity * 0.75} depthWrite={false} />
+              <meshBasicMaterial color="#ffffff" transparent opacity={opacity * 0.75} depthWrite={false} />
             </mesh>
           )}
         </Billboard>
@@ -79,24 +79,13 @@ function CenterLabel() {
 export default function SolarSystem() {
   // Simple Icons SVG textures (transparent) in white
   const logos = {
-    openai: "https://cdn.simpleicons.org/openai/ffffff",
-    anthropic: "https://cdn.simpleicons.org/anthropic/ffffff",
-    google: "https://cdn.simpleicons.org/google/ffffff",
-    mistral: "https://cdn.simpleicons.org/mistral-ai/ffffff",
-    perplexity: "https://cdn.simpleicons.org/perplexity/ffffff",
-    meta: "https://cdn.simpleicons.org/meta/ffffff",
-    cohere: "https://cdn.simpleicons.org/cohere/ffffff",
+    gemini: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F0998f1c1a13d467ebb69620a565f5c56?format=webp&width=800",
+    grok: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Ff0bd4b5088484c87af11d8303ff8441c?format=webp&width=800",
+    claude: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fbc1428a47176428a86680d0481a28c5c?format=webp&width=800",
+    chatgpt: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5c8117981d4747f295f53020199bcca0?format=webp&width=800",
+    meta: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fc21272910fc3498aa8bbb55cae308c3b?format=webp&width=800",
+    perplexity: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F0caf8698c5524751a05b86752d1bd43b?format=webp&width=800",
   } as const;
-
-  const brandColors: Record<keyof typeof logos, string> = {
-    openai: "#412991",
-    anthropic: "#000000",
-    google: "#4285F4",
-    mistral: "#FF7A00",
-    perplexity: "#1B63FF",
-    meta: "#0866FF",
-    cohere: "#FFC300",
-  };
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
   const radius = 2.2;
@@ -116,8 +105,7 @@ export default function SolarSystem() {
             size={0.34}
             speed={speed}
             phase={(i / keys.length) * Math.PI * 2}
-            opacity={0.16}
-            color={brandColors[k]}
+            opacity={0.22}
           />
         ))}
       </Canvas>
