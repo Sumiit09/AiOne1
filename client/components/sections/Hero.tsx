@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-
+import { motion } from "framer-motion";
 
 import SolarSystem from "@/components/three/SolarSystem";
 
@@ -22,10 +22,32 @@ export default function Hero() {
           <a href="/login" className="inline-flex"><Button className="h-12 px-8 text-base bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl hover:translate-y-[-1px] transition-all">Get Started</Button></a>
           <Button variant="outline" className="h-11 px-6 border-white/20 text-white hover:bg-white/10">Request a demo</Button>
         </div>
-        <div className="mt-10 md:mt-14">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-balance">One Space. Endless Possibilities.</h2>
-          <h3 className="mt-2 text-2xl md:text-4xl font-extrabold tracking-tight text-balance">Simplify Your Creation</h3>
-        </div>
+        <motion.div
+          className="mt-10 md:mt-14"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
+          <motion.h2
+            className="text-3xl md:text-5xl font-extrabold tracking-tight text-balance"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.55 }}
+            viewport={{ once: true, amount: 0.6 }}
+          >
+            One Space. Endless Possibilities.
+          </motion.h2>
+          <motion.h3
+            className="mt-2 text-2xl md:text-4xl font-extrabold tracking-tight text-balance text-white/90"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18, duration: 0.55 }}
+            viewport={{ once: true, amount: 0.6 }}
+          >
+            Simplify Your Creation
+          </motion.h3>
+        </motion.div>
       </div>
     </section>
   );
