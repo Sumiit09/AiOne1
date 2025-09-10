@@ -27,14 +27,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.6 }}
+          viewport={{ once: false, amount: 0.6 }}
         >
           <motion.h2
             className="text-3xl md:text-5xl font-extrabold tracking-tight text-balance"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.55 }}
-            viewport={{ once: true, amount: 0.6 }}
+            viewport={{ once: false, amount: 0.6 }}
           >
             One Space. Endless Possibilities.
           </motion.h2>
@@ -43,7 +43,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.18, duration: 0.55 }}
-            viewport={{ once: true, amount: 0.6 }}
+            viewport={{ once: false, amount: 0.6 }}
           >
             Simplify Your Creation
           </motion.h3>
