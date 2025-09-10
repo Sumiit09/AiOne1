@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, Html } from "@react-three/drei";
-import { AdditiveBlending, Group, SRGBColorSpace, Texture, TextureLoader } from "three";
+import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
 
 
@@ -53,7 +53,7 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: s
           {tex && !failed ? (
             <mesh>
               <planeGeometry args={[size * aspect, size]} />
-              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} blending={AdditiveBlending} />
+              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} alphaTest={0.05} toneMapped={false} />
             </mesh>
           ) : (
             <mesh>
