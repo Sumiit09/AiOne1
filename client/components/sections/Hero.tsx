@@ -39,7 +39,7 @@ export default function Hero() {
             One Space. Endless Possibilities.
           </motion.h2>
           <motion.h3
-            className="mt-2 text-2xl md:text-4xl font-extrabold tracking-tight text-balance text-white/90"
+            className="mt-3 text-base md:text-lg text-white/70 max-w-2xl mx-auto font-normal"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.18, duration: 0.55 }}
