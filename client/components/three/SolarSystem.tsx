@@ -5,7 +5,7 @@ import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
 
 
-function Planet({ url, radius, size, speed, phase = 0, opacity = 0.2 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
+function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
   const group = useRef<Group>(null);
   const [tex, setTex] = useState<Texture | null>(null);
   const [failed, setFailed] = useState(false);
@@ -51,7 +51,7 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.2 }: { url: s
           ) : (
             <mesh>
               <circleGeometry args={[size * 0.5, 48]} />
-              <meshBasicMaterial color="#ffffff" transparent opacity={opacity * 0.75} depthWrite={false} />
+              <meshBasicMaterial color="#ffffff" transparent opacity={opacity} depthWrite={false} />
             </mesh>
           )}
         </Billboard>
@@ -105,7 +105,7 @@ export default function SolarSystem() {
             size={0.34}
             speed={speed}
             phase={(i / keys.length) * Math.PI * 2}
-            opacity={0.22}
+            opacity={0.6}
           />
         ))}
       </Canvas>
