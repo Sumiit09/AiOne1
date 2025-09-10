@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 
-import HeroOrbs from "@/components/three/HeroOrbs";
+import HeroMoon from "@/components/three/HeroMoon";
 
 export default function Hero() {
   return (
