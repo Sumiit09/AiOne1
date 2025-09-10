@@ -79,12 +79,13 @@ function CenterLabel() {
 export default function SolarSystem() {
   // Simple Icons SVG textures (transparent) in white
   const logos = {
-    gemini: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F0998f1c1a13d467ebb69620a565f5c56?format=webp&width=800",
-    grok: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Ff0bd4b5088484c87af11d8303ff8441c?format=webp&width=800",
-    claude: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fbc1428a47176428a86680d0481a28c5c?format=webp&width=800",
-    chatgpt: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5c8117981d4747f295f53020199bcca0?format=webp&width=800",
-    meta: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fc21272910fc3498aa8bbb55cae308c3b?format=webp&width=800",
-    perplexity: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F0caf8698c5524751a05b86752d1bd43b?format=webp&width=800",
+    chatgpt: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=800",
+    meta: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F87bc619e8b0342ed98d39248290cd3f8?format=webp&width=800",
+    grok: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fa42a6a7abf654084853ee868703d390c?format=webp&width=800",
+    perplexity: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5594ddc449394fc29f89497d6108ff38?format=webp&width=800",
+    gemini: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=800",
+    deepseek: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F155e3342d99c45f6b0708d4d86279a05?format=webp&width=800",
+    claude: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=800",
   } as const;
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
