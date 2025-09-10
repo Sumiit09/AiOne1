@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Billboard } from "@react-three/drei";
+import { Billboard, Html } from "@react-three/drei";
 import { AdditiveBlending, Group, SRGBColorSpace, Texture, TextureLoader } from "three";
+import Logo from "@/components/site/Logo";
 
 function Sun() {
   return (
@@ -73,6 +74,26 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: 
   );
 }
 
+function CenterLabel() {
+  return (
+    <group>
+      {/* soft halo */}
+      <mesh position={[0, -0.1, -0.7]}>
+        <sphereGeometry args={[1.1, 32, 32]} />
+        <meshBasicMaterial color="#6ad1ff" transparent opacity={0.08} blending={AdditiveBlending} depthWrite={false} />
+      </mesh>
+      {/* DOM label for crisp logo + name */}
+      <Html position={[0, -0.1, -0.6]} center>
+        <div className="pointer-events-none select-none">
+          <div className="flex items-center gap-2 scale-[1.25] md:scale-[1.4] drop-shadow-[0_0_12px_rgba(122,167,255,0.35)]">
+            <Logo />
+          </div>
+        </div>
+      </Html>
+    </group>
+  );
+}
+
 function Orbits() {
   return (
     <group>
@@ -104,7 +125,7 @@ export default function SolarSystem() {
       <Canvas gl={{ antialias: true }} dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 50 }}>
         <ambientLight intensity={0.35} />
         <directionalLight position={[4, 2, 6]} intensity={0.55} color="#cfe9ff" />
-        <Sun />
+        <CenterLabel />
         <Orbits />
         <Planet url={logos.openai} radius={1.6} size={0.42} speed={0.18} phase={0} />
         <Planet url={logos.anthropic} radius={2.2} size={0.38} speed={0.16} phase={0.6} />
