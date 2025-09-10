@@ -96,11 +96,11 @@ export default function SolarSystem() {
   } as const;
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
-  const radius = 2.2;
+  const radius = 2.35;
   const speed = 0.18;
 
   return (
-    <div className="relative w-full h-48 md:h-56 pointer-events-none hidden md:block motion-reduce:hidden">
+    <div className="relative w-full h-52 md:h-64 pointer-events-none hidden md:block motion-reduce:hidden">
       <Canvas gl={{ antialias: true }} dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 50 }}>
         <ambientLight intensity={0.35} />
         <directionalLight position={[4, 2, 6]} intensity={0.55} color="#cfe9ff" />
@@ -110,7 +110,7 @@ export default function SolarSystem() {
             key={k}
             url={logos[k]}
             radius={radius}
-            size={0.34}
+            size={0.45}
             speed={speed}
             phase={(i / keys.length) * Math.PI * 2}
             opacity={0.6}
