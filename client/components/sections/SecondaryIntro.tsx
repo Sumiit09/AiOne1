@@ -27,7 +27,7 @@ export default function SecondaryIntro() {
             transition={{ delay: 0.18, duration: 0.55 }}
             viewport={{ once: false, amount: 0.6 }}
           >
-            Access GPT‑4, Claude, Gemini, and more — all from one powerful, affordable, and legal platform.
+            Simplify Your Creation
           </motion.h3>
         </motion.div>
         <div className="mt-8 md:mt-10">
