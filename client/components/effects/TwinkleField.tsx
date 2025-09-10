@@ -8,7 +8,7 @@ interface Star {
   duration: number;
 }
 
-export default function TwinkleField({ count = 260 }: { count?: number }) {
+export default function TwinkleField({ count = 120 }: { count?: number }) {
   const [vw, setVw] = useState(0);
   useEffect(() => {
     const onResize = () => setVw(window.innerWidth);

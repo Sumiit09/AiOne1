@@ -8,7 +8,7 @@ export default function Starfield() {
         <Stars
           radius={80}
           depth={40}
-          count={3500}
+          count={1200}
           factor={4}
           saturation={0}
           fade
