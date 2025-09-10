@@ -4,7 +4,6 @@ import SecondaryIntro from "@/components/sections/SecondaryIntro";
 import UseCases from "@/components/sections/UseCases";
 import Reviews from "@/components/sections/Reviews";
 import Pricing from "@/components/sections/Pricing";
-import SecondaryIntro from "@/components/sections/SecondaryIntro";
 import AboutSection from "@/components/sections/AboutSection";
 
 export default function Index() {
@@ -12,6 +11,7 @@ export default function Index() {
     <div>
       <Hero />
       <SecondaryIntro />
+      <AboutSection />
       <Features />
       <UseCases />
       <Reviews />
