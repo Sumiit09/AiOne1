@@ -21,10 +21,10 @@ export default function Navbar() {
         </Link>
         <div className="flex items-center gap-6">
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <Link to="/about" className="hover:text-white/90 text-white/80">About</Link>
-            <a href="#features" className="hover:text-white/90 text-white/80">Features</a>
-            <a href="#pricing" className="hover:text-white/90 text-white/80">Pricing</a>
-            <a href="#reviews" className="hover:text-white/90 text-white/80">Reviews</a>
+            <Link to="/#about" className="hover:text-white/90 text-white/80">About</Link>
+            <Link to="/#features" className="hover:text-white/90 text-white/80">Features</Link>
+            <Link to="/#pricing" className="hover:text-white/90 text-white/80">Pricing</Link>
+            <Link to="/#reviews" className="hover:text-white/90 text-white/80">Reviews</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link to="/login" className="hidden sm:inline-flex"><Button variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10">Login</Button></Link>
