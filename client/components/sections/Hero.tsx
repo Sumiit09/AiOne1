@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles, Orbit, Bug, Hexagon } from "lucide-react";
 
-const chips = [
-  { icon: Sparkles, label: "DeepSeek" },
-  { icon: Orbit, label: "Gemini" },
-  { icon: Bug, label: "Grok" },
-  { icon: Hexagon, label: "Meta" },
-];
 
 export default function Hero() {
   return (
@@ -15,14 +8,6 @@ export default function Hero() {
         <div className="absolute -top-40 left-1/2 h-[520px] w-[980px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] blur-3xl" />
       </div>
       <div className="container mx-auto py-16 md:py-24 text-center">
-        <div className="mx-auto flex flex-wrap items-center justify-center gap-3 opacity-80">
-          {chips.map((c) => (
-            <div key={c.label} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">
-              <c.icon className="h-3.5 w-3.5 text-white/70" />
-              <span className="text-white/80">{c.label}</span>
-            </div>
-          ))}
-        </div>
         <h1 className="mt-6 text-4xl md:text-6xl font-extrabold tracking-tight text-balance">
           AiOne — All-in-One AI. For
           <span className="block">Everyone</span>
