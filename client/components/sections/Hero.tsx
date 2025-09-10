@@ -6,7 +6,6 @@ import SolarSystem from "@/components/three/SolarSystem";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-transparent text-white">
-      <SolarSystem />
       <div className="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_0%,black,transparent)]">
         <div className="absolute -top-40 left-1/2 h-[520px] w-[980px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] blur-3xl" />
       </div>
@@ -15,6 +14,7 @@ export default function Hero() {
           AiOne — All-in-One AI. For
           <span className="block">Everyone</span>
         </h1>
+        <SolarSystem />
         <p className="mt-5 text-base md:text-lg text-white/70 max-w-2xl mx-auto">
           Access GPT‑4, Claude, Gemini, and more — all from one powerful, affordable, and legal platform.
         </p>
