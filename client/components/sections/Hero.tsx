@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 
 
 import SolarSystem from "@/components/three/SolarSystem";
-import MultiModels from "@/components/sections/MultiModels";
 
 export default function Hero() {
   return (
@@ -23,7 +22,6 @@ export default function Hero() {
           <a href="/login" className="inline-flex"><Button className="h-12 px-8 text-base bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl hover:translate-y-[-1px] transition-all">Get Started</Button></a>
           <Button variant="outline" className="h-11 px-6 border-white/20 text-white hover:bg-white/10">Request a demo</Button>
         </div>
-        <MultiModels />
       </div>
     </section>
   );
