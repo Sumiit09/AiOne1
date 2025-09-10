@@ -14,7 +14,6 @@ export default function Hero() {
           AiOne — All-in-One AI. For
           <span className="block">Everyone</span>
         </h1>
-        <SolarSystem />
         <p className="mt-3 text-base md:text-lg text-white/70 max-w-2xl mx-auto">
           Access GPT‑4, Claude, Gemini, and more — all from one powerful, affordable, and legal platform.
         </p>
@@ -48,6 +47,9 @@ export default function Hero() {
             Simplify Your Creation
           </motion.h3>
         </motion.div>
+        <div className="mt-8 md:mt-10">
+          <SolarSystem />
+        </div>
       </div>
     </section>
   );
