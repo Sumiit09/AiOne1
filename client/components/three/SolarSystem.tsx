@@ -1,23 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, Html } from "@react-three/drei";
-import { AdditiveBlending, Group, SRGBColorSpace, Texture, TextureLoader } from "three";
-import Logo from "@/components/site/Logo";
+import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
+import CleanLogo from "@/components/site/CleanLogo";
 
-function Sun() {
-  return (
-    <group>
-      <mesh position={[0, -0.1, -0.6]}>
-        <sphereGeometry args={[0.6, 48, 48]} />
-        <meshStandardMaterial color="#9ad6ff" roughness={1} metalness={0} emissive="#9ad6ff" emissiveIntensity={0.15} />
-      </mesh>
-      <mesh position={[0, -0.1, -0.7]}> 
-        <sphereGeometry args={[1.1, 32, 32]} />
-        <meshBasicMaterial color="#6ad1ff" transparent opacity={0.08} blending={AdditiveBlending} depthWrite={false} />
-      </mesh>
-    </group>
-  );
-}
 
 function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
   const group = useRef<Group>(null);
@@ -29,7 +15,7 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: 
     setTex(null);
     setFailed(false);
     const loader = new TextureLoader();
-    loader.crossOrigin = "anonymous" as any;
+    (loader as any).crossOrigin = "anonymous";
     loader.load(
       url,
       (t) => {
@@ -50,12 +36,12 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: 
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() * speed + phase;
-    if (group.current) group.current.rotation.y = t;
+    if (group.current) group.current.rotation.z = t; // screen-space circular path
   });
 
   return (
-    <group ref={group}>
-      <group position={[radius, 0, -0.6]}>
+    <group ref={group} position={[0, 0, -0.6]}>
+      <group position={[radius, 0, 0]}>
         <Billboard>
           {tex && !failed ? (
             <mesh>
@@ -77,16 +63,11 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: 
 function CenterLabel() {
   return (
     <group>
-      {/* soft halo */}
-      <mesh position={[0, -0.1, -0.7]}>
-        <sphereGeometry args={[1.1, 32, 32]} />
-        <meshBasicMaterial color="#6ad1ff" transparent opacity={0.08} blending={AdditiveBlending} depthWrite={false} />
-      </mesh>
-      {/* DOM label for crisp logo + name */}
       <Html position={[0, -0.1, -0.6]} center>
         <div className="pointer-events-none select-none">
-          <div className="flex items-center gap-2 scale-[1.25] md:scale-[1.4] drop-shadow-[0_0_12px_rgba(122,167,255,0.35)]">
-            <Logo />
+          <div className="flex flex-col items-center gap-1 scale-[1.1] md:scale-[1.25]">
+            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=256" alt="AiOne logo" className="h-10 w-10 object-contain" threshold={252} />
+            <span className="text-white font-extrabold tracking-tight text-lg">AiOne</span>
           </div>
         </div>
       </Html>
@@ -94,19 +75,6 @@ function CenterLabel() {
   );
 }
 
-function Orbits() {
-  return (
-    <group>
-      {/* subtle orbit rings */}
-      {[1.6, 2.2, 2.8, 3.4].map((r, i) => (
-        <mesh key={i} position={[0, -0.1, -0.7]} rotation={[Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[r - 0.002, r + 0.002, 128]} />
-          <meshBasicMaterial color="#7be9d8" transparent opacity={0.045} blending={AdditiveBlending} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
 
 export default function SolarSystem() {
   // Simple Icons SVG textures (transparent) in white
@@ -120,20 +88,19 @@ export default function SolarSystem() {
     cohere: "https://cdn.simpleicons.org/cohere/ffffff",
   } as const;
 
+  const all = [logos.openai, logos.anthropic, logos.google, logos.mistral, logos.perplexity, logos.meta, logos.cohere];
+  const radius = 2.2;
+  const speed = 0.18;
+
   return (
-    <div className="absolute inset-0 -z-10 pointer-events-none hidden md:block motion-reduce:hidden">
+    <div className="relative w-full h-48 md:h-56 pointer-events-none hidden md:block motion-reduce:hidden">
       <Canvas gl={{ antialias: true }} dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 50 }}>
         <ambientLight intensity={0.35} />
         <directionalLight position={[4, 2, 6]} intensity={0.55} color="#cfe9ff" />
         <CenterLabel />
-        <Orbits />
-        <Planet url={logos.openai} radius={1.6} size={0.42} speed={0.18} phase={0} />
-        <Planet url={logos.anthropic} radius={2.2} size={0.38} speed={0.16} phase={0.6} />
-        <Planet url={logos.google} radius={2.8} size={0.36} speed={0.13} phase={1.4} />
-        <Planet url={logos.mistral} radius={3.4} size={0.34} speed={0.11} phase={2.2} />
-        <Planet url={logos.perplexity} radius={2.5} size={0.32} speed={0.15} phase={3.0} opacity={0.15} />
-        <Planet url={logos.meta} radius={3.0} size={0.30} speed={0.12} phase={3.7} opacity={0.15} />
-        <Planet url={logos.cohere} radius={1.9} size={0.28} speed={0.17} phase={4.4} opacity={0.15} />
+        {all.map((u, i) => (
+          <Planet key={i} url={u} radius={radius} size={0.34} speed={speed} phase={(i / all.length) * Math.PI * 2} opacity={0.14} />
+        ))}
       </Canvas>
     </div>
   );
