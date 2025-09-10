@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 
 
 import SolarSystem from "@/components/three/SolarSystem";
+import MultiModels from "@/components/sections/MultiModels";
 
 export default function Hero() {
   return (
