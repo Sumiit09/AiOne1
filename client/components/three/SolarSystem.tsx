@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, Html } from "@react-three/drei";
-import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
+import { AdditiveBlending, Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
 
 
 function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
   const group = useRef<Group>(null);
   const [tex, setTex] = useState<Texture | null>(null);
+  const [aspect, setAspect] = useState(1);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,12 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: s
         if (!mounted) return;
         t.colorSpace = SRGBColorSpace;
         setTex(t);
+        const img: any = t.image as HTMLImageElement | HTMLCanvasElement;
+        if (img && (img as HTMLImageElement).width) {
+          setAspect((img as HTMLImageElement).width / (img as HTMLImageElement).height || 1);
+        } else {
+          setAspect(1);
+        }
       },
       undefined,
       () => {
@@ -45,8 +52,8 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: s
         <Billboard>
           {tex && !failed ? (
             <mesh>
-              <planeGeometry args={[size, size]} />
-              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} />
+              <planeGeometry args={[size * aspect, size]} />
+              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} blending={AdditiveBlending} />
             </mesh>
           ) : (
             <mesh>
