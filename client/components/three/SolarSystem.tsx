@@ -5,7 +5,7 @@ import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
 
 
-function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
+function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16, color = "#ffffff" }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; color?: string; }) {
   const group = useRef<Group>(null);
   const [tex, setTex] = useState<Texture | null>(null);
   const [failed, setFailed] = useState(false);
@@ -46,7 +46,7 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16 }: { url: 
           {tex && !failed ? (
             <mesh>
               <planeGeometry args={[size, size]} />
-              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} />
+              <meshBasicMaterial map={tex} color={color} transparent opacity={opacity} depthWrite={false} />
             </mesh>
           ) : (
             <mesh>
@@ -82,13 +82,23 @@ export default function SolarSystem() {
     openai: "https://cdn.simpleicons.org/openai/ffffff",
     anthropic: "https://cdn.simpleicons.org/anthropic/ffffff",
     google: "https://cdn.simpleicons.org/google/ffffff",
-    mistral: "https://cdn.simpleicons.org/mistral/ffffff",
+    mistral: "https://cdn.simpleicons.org/mistral-ai/ffffff",
     perplexity: "https://cdn.simpleicons.org/perplexity/ffffff",
     meta: "https://cdn.simpleicons.org/meta/ffffff",
     cohere: "https://cdn.simpleicons.org/cohere/ffffff",
   } as const;
 
-  const all = [logos.openai, logos.anthropic, logos.google, logos.mistral, logos.perplexity, logos.meta, logos.cohere];
+  const brandColors: Record<keyof typeof logos, string> = {
+    openai: "#412991",
+    anthropic: "#000000",
+    google: "#4285F4",
+    mistral: "#FF7A00",
+    perplexity: "#1B63FF",
+    meta: "#0866FF",
+    cohere: "#FFC300",
+  };
+
+  const keys = Object.keys(logos) as (keyof typeof logos)[];
   const radius = 2.2;
   const speed = 0.18;
 
@@ -98,8 +108,17 @@ export default function SolarSystem() {
         <ambientLight intensity={0.35} />
         <directionalLight position={[4, 2, 6]} intensity={0.55} color="#cfe9ff" />
         <CenterLabel />
-        {all.map((u, i) => (
-          <Planet key={i} url={u} radius={radius} size={0.34} speed={speed} phase={(i / all.length) * Math.PI * 2} opacity={0.14} />
+        {keys.map((k, i) => (
+          <Planet
+            key={k}
+            url={logos[k]}
+            radius={radius}
+            size={0.34}
+            speed={speed}
+            phase={(i / keys.length) * Math.PI * 2}
+            opacity={0.16}
+            color={brandColors[k]}
+          />
         ))}
       </Canvas>
     </div>
