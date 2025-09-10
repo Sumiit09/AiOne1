@@ -14,18 +14,18 @@ export default function MultiModels() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="aspect-video w-full rounded-xl border border-white/10 bg-white/5" />
         <div>
-          <p className="text-sm text-[hsl(var(--brand-end))] font-semibold">Multiple AI Models in a Single Chat</p>
-          <h2 className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight text-balance">
+          <p className="text-base md:text-lg text-[hsl(var(--brand-end))] font-semibold">Multiple AI Models in a Single Chat</p>
+          <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight text-balance">
             Start With GPT‑4o, Clarify With Claude, Optimize With DeepSeek
           </h2>
-          <p className="mt-2 text-white/70">Without losing any context.</p>
+          <p className="mt-3 text-lg md:text-xl text-white/80">Without losing any context.</p>
           <ul className="mt-6 space-y-3">
             {items.map((it, i) => (
               <li key={i} className="flex items-start gap-3">
-                <it.icon className="mt-1 h-5 w-5 text-white/80" />
+                <it.icon className="mt-1 h-6 w-6 text-white/80" />
                 <div>
-                  <p className="font-semibold">{it.title}</p>
-                  <p className="text-sm text-white/70">{it.desc}</p>
+                  <p className="text-base md:text-lg font-semibold">{it.title}</p>
+                  <p className="text-sm md:text-base text-white/70">{it.desc}</p>
                 </div>
               </li>
             ))}
