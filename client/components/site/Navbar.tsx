@@ -28,7 +28,7 @@ export default function Navbar() {
           </nav>
           <div className="flex items-center gap-3">
             <Link to="/login" className="hidden sm:inline-flex"><Button variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10">Login</Button></Link>
-            <Link to="/signup" className="hidden sm:inline-flex"><Button className="bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl transition-shadow">Get Started</Button></Link>
+            <Link to="/login" className="hidden sm:inline-flex"><Button className="bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl transition-shadow">Get Started</Button></Link>
           </div>
         </div>
       </div>

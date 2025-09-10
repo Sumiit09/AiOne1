@@ -24,31 +24,29 @@ export default function Login() {
           <span className="font-semibold">AiOne</span>
         </div>
 
-        <h1 className="text-2xl font-bold mb-4">Welcome back.</h1>
+        <h1 className="text-2xl font-bold mb-1 text-center">Welcome to AiOne</h1>
+        <p className="text-center text-sm text-white/70 mb-4">Choose how you would like to sign in</p>
 
         <Button className="w-full h-11 bg-black text-white hover:bg-black/90 mb-4">Continue with Google</Button>
 
         <div className="relative my-4">
           <Separator className="bg-white/10" />
-          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-white/60">OR</span>
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-[10px] tracking-wider text-white/60">OR CONTINUE WITH YOUR EMAIL</span>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
+          <label className="text-xs text-white/70">Email Address</label>
           <Input
             type="email"
-            placeholder="Enter your email to continue..."
+            placeholder="Enter your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="h-11 bg-white/5 border-white/15 placeholder:text-white/50"
           />
           <Button disabled={!valid} className="w-full h-11 disabled:opacity-50 disabled:cursor-not-allowed">
-            Continue →
+            Send verification code
           </Button>
         </div>
-
-        <p className="mt-4 text-center text-sm text-white/70">
-          Don’t have an account yet? <Link to="#" className="text-[hsl(var(--brand-end))] hover:underline">Sign up for free</Link>
-        </p>
       </div>
     </div>
   );
