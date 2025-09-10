@@ -51,7 +51,7 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.16, color = "
           ) : (
             <mesh>
               <circleGeometry args={[size * 0.5, 48]} />
-              <meshBasicMaterial color="#ffffff" transparent opacity={opacity * 0.75} depthWrite={false} />
+              <meshBasicMaterial color={color} transparent opacity={opacity * 0.75} depthWrite={false} />
             </mesh>
           )}
         </Billboard>
