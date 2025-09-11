@@ -17,7 +17,7 @@ export default function Layout({ children }: PropsWithChildren) {
   }, [location.hash]);
   return (
     <div className="min-h-screen flex flex-col bg-[#0B0F1A] text-foreground relative">
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none" style={{ WebkitMaskImage: "linear-gradient(to bottom, transparent 0, transparent 64px, black 120px, black 100%)", maskImage: "linear-gradient(to bottom, transparent 0, transparent 64px, black 120px, black 100%)" }}>
         <Starfield />
         <DotGrid />
         <TwinkleField />
