@@ -27,7 +27,7 @@ export default function Navbar() {
             <Link to="/#reviews" className="hover:text-white/90 text-white/80">Reviews</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <Link to="/login" className="hidden sm:inline-flex"><Button variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10">Login</Button></Link>
+            <Link to="/login" className="hidden sm:inline-flex"><Button variant="outline" className="h-10 px-5 rounded-full border-white/20 bg-transparent text-white hover:bg-white/10">Login</Button></Link>
             <Link to="/login" className="hidden sm:inline-flex"><Button className="h-10 px-5 rounded-full bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white shadow-lg hover:shadow-xl transition-shadow">Get Started</Button></Link>
           </div>
         </div>
