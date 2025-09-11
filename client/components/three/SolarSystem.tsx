@@ -4,8 +4,7 @@ import { Billboard, Html } from "@react-three/drei";
 import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
 
-
-function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: string; radius: number; size: number; speed: number; phase?: number; opacity?: number; }) {
+function Planet({ url, rx, ry, size, speed, phase = 0, opacity = 0.6 }: { url: string; rx: number; ry: number; size: number; speed: number; phase?: number; opacity?: number; }) {
   const group = useRef<Group>(null);
   const [tex, setTex] = useState<Texture | null>(null);
   const [aspect, setAspect] = useState(1);
@@ -43,26 +42,26 @@ function Planet({ url, radius, size, speed, phase = 0, opacity = 0.6 }: { url: s
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() * speed + phase;
-    if (group.current) group.current.rotation.z = t; // screen-space circular path
+    const x = Math.cos(t) * rx;
+    const y = Math.sin(t) * ry;
+    if (group.current) group.current.position.set(x, y, -0.6);
   });
 
   return (
-    <group ref={group} position={[0, 0, -0.6]}>
-      <group position={[radius, 0, 0]}>
-        <Billboard>
-          {tex && !failed ? (
-            <mesh>
-              <planeGeometry args={[size * aspect, size]} />
-              <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} alphaTest={0.05} toneMapped={false} />
-            </mesh>
-          ) : (
-            <mesh>
-              <circleGeometry args={[size * 0.5, 48]} />
-              <meshBasicMaterial color="#ffffff" transparent opacity={opacity} depthWrite={false} />
-            </mesh>
-          )}
-        </Billboard>
-      </group>
+    <group ref={group}>
+      <Billboard>
+        {tex && !failed ? (
+          <mesh>
+            <planeGeometry args={[size * aspect, size]} />
+            <meshBasicMaterial map={tex} transparent opacity={opacity} depthWrite={false} alphaTest={0.05} toneMapped={false} />
+          </mesh>
+        ) : (
+          <mesh>
+            <circleGeometry args={[size * 0.5, 48]} />
+            <meshBasicMaterial color="#ffffff" transparent opacity={opacity} depthWrite={false} />
+          </mesh>
+        )}
+      </Billboard>
     </group>
   );
 }
@@ -82,9 +81,7 @@ function CenterLabel() {
   );
 }
 
-
 export default function SolarSystem() {
-  // Simple Icons SVG textures (transparent) in white
   const logos = {
     chatgpt: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=800",
     meta: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F87bc619e8b0342ed98d39248290cd3f8?format=webp&width=800",
@@ -96,7 +93,8 @@ export default function SolarSystem() {
   } as const;
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
-  const radius = 2.35;
+  const rx = 2.6; // horizontal radius
+  const ry = 1.4; // vertical radius (smaller to create ellipse)
   const speed = 0.18;
 
   return (
@@ -109,7 +107,8 @@ export default function SolarSystem() {
           <Planet
             key={k}
             url={logos[k]}
-            radius={radius}
+            rx={rx}
+            ry={ry}
             size={0.45}
             speed={speed}
             phase={(i / keys.length) * Math.PI * 2}
