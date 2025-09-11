@@ -93,7 +93,7 @@ export default function SolarSystem() {
   } as const;
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
-  const rx = 2.6; // horizontal radius
+  const rx = 3.2; // horizontal radius (wider)
   const ry = 1.4; // vertical radius (smaller to create ellipse)
   const speed = 0.18;
 
