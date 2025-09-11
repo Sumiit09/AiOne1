@@ -13,7 +13,7 @@ export default function Navbar() {
   }, []);
   return (
     <header
-      className={`${scrolled ? "bg-[#0B0F1A]/80 border-white/10 backdrop-blur" : "bg-transparent border-transparent"} sticky top-0 z-40 w-full text-white transition-colors`}
+      className={`${scrolled ? "bg-[#0B0F1A]/40 border-white/5 backdrop-blur" : "bg-transparent border-transparent"} sticky top-0 z-40 w-full text-white transition-colors`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
