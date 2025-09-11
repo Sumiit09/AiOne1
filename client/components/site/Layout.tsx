@@ -21,7 +21,7 @@ export default function Layout({ children }: PropsWithChildren) {
         <Starfield />
         <DotGrid />
         <TwinkleField />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
       </div>
       <Navbar />
       <main className="relative z-10 flex-1 text-white">{children}</main>
