@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_0%,black,transparent)]">
         <div className="absolute -top-40 left-1/2 h-[520px] w-[980px] -translate-x-1/2 rounded-full bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] blur-3xl" />
       </div>
-      <div className="container mx-auto pt-32 md:pt-40 pb-12 md:pb-14 text-center">
+      <div className="container mx-auto pt-32 md:pt-40 pb-16 md:pb-20 text-center">
         <h1 className="mt-2 text-4xl md:text-6xl font-extrabold tracking-tight text-balance">
           AiOne — All-in-One AI. For
           <span className="block">Everyone</span>
