@@ -4,7 +4,7 @@ import SolarSystem from "@/components/three/SolarSystem";
 export default function SecondaryIntro() {
   return (
     <section className="relative overflow-hidden text-white">
-      <div className="container mx-auto pt-10 md:pt-12 pb-20 md:pb-28 text-center">
+      <div className="container mx-auto pt-4 md:pt-6 pb-16 md:pb-20 text-center">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function SecondaryIntro() {
             Simplify Your Creation
           </motion.h3>
         </motion.div>
-        <div className="mt-6 md:mt-8">
+        <div className="mt-4 md:mt-6">
           <SolarSystem />
         </div>
       </div>
