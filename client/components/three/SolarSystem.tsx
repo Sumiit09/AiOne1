@@ -93,7 +93,7 @@ export default function SolarSystem() {
   } as const;
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
-  const rx = 6.0; // horizontal radius (much wider)
+  const rx = 8.0; // horizontal radius (ultra wide)
   const ry = 1.4; // vertical radius (smaller to create ellipse)
   const speed = 0.18;
 
@@ -109,7 +109,7 @@ export default function SolarSystem() {
             url={logos[k]}
             rx={rx}
             ry={ry}
-            size={0.45}
+            size={0.6}
             speed={speed}
             phase={(i / keys.length) * Math.PI * 2}
             opacity={0.6}
