@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Layout({ children }: PropsWithChildren) {
   const location = useLocation();
+  const isDashboard = location.pathname.startsWith("/dashboard");
   useEffect(() => {
     if (location.hash) {
       const id = decodeURIComponent(location.hash.replace('#', ''));
@@ -23,7 +24,7 @@ export default function Layout({ children }: PropsWithChildren) {
         <TwinkleField />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
       </div>
-      <Navbar />
+      {!isDashboard && <Navbar />}
       <main className="relative z-10 flex-1 text-white">{children}</main>
       <Footer />
     </div>
