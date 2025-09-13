@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import CleanLogo from "@/components/site/CleanLogo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const valid = useMemo(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email), [email]);
 
@@ -27,7 +28,7 @@ export default function Login() {
         <h1 className="text-2xl font-bold mb-1 text-center">Welcome to AiOne</h1>
         <p className="text-center text-sm text-white/70 mb-4">Choose how you would like to sign in</p>
 
-        <Button className="w-full h-11 bg-black text-white hover:bg-black/90 mb-4">Continue with Google</Button>
+        <Button className="w-full h-11 bg-black text-white hover:bg-black/90 mb-4" onClick={() => navigate("/dashboard")}>Continue with Google</Button>
 
         <div className="relative my-4">
           <Separator className="bg-white/10" />
@@ -43,7 +44,7 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
             className="h-11 bg-white/5 border-white/15 placeholder:text-white/50"
           />
-          <Button disabled={!valid} className="w-full h-11 disabled:opacity-50 disabled:cursor-not-allowed">
+          <Button disabled={!valid} className="w-full h-11 disabled:opacity-50 disabled:cursor-not-allowed" onClick={() => navigate("/dashboard")}>
             Send verification code
           </Button>
         </div>
