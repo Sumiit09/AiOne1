@@ -20,7 +20,6 @@ export default function Navbar() {
         </Link>
         <div className="flex items-center gap-6">
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <Link to="/dashboard" className="hover:text-white/90 text-white/80">Dashboard</Link>
             <Link to="/#about" className="hover:text-white/90 text-white/80">About</Link>
             <Link to="/#features" className="hover:text-white/90 text-white/80">Features</Link>
             <Link to="/#pricing" className="hover:text-white/90 text-white/80">Pricing</Link>
