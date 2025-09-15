@@ -77,8 +77,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Search input (moved up) */}
-      <div className="ml-20 pt-24">
+      {/* Search input at bottom */}
+      <div className="fixed inset-x-0 bottom-24 z-30 ml-20">
         <div className="mx-auto max-w-3xl px-4">
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
             <div className="flex items-center gap-2 p-2">
@@ -93,15 +93,17 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          {/* Feature chips below search */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-white/80 hover:bg-white/10">
-              <Sparkles className="h-4 w-4" /> AiOne Prompt
-            </button>
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-white/80 hover:bg-white/10">
-              <Bot className="h-4 w-4" /> AiOne Agents
-            </button>
-          </div>
+        </div>
+      </div>
+      {/* Feature chips below search (colorful) */}
+      <div className="fixed inset-x-0 bottom-4 z-20 ml-20">
+        <div className="mx-auto max-w-3xl px-4 flex flex-wrap items-center justify-center gap-3">
+          <button className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white shadow hover:shadow-lg transition bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))]">
+            <Sparkles className="h-4 w-4" /> AiOne Prompt
+          </button>
+          <button className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white shadow hover:shadow-lg transition bg-gradient-to-r from-violet-500 to-cyan-400">
+            <Bot className="h-4 w-4" /> AiOne Agents
+          </button>
         </div>
       </div>
     </div>
