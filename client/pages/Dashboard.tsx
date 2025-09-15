@@ -1,4 +1,5 @@
-import { Plus, Search, Zap, User, Mic, Send, Sparkles } from "lucide-react";
+import { Plus, Search, Zap, User, Mic, Send } from "lucide-react";
+import CleanLogo from "@/components/site/CleanLogo";
 
 export default function Dashboard() {
   return (
