@@ -29,10 +29,10 @@ export default function Dashboard() {
 
 
       {/* Title and model selector */}
-      <div className="ml-14">
-        <div className="mx-auto max-w-3xl px-4 pt-6 text-left">
+      <div className="fixed left-14 top-4 z-30">
+        <div className="pl-3">
           <div className="inline-flex items-center gap-2">
-            <div className="text-[32px] font-semibold tracking-tight">
+            <div className="text-[32px] leading-[32px] font-semibold tracking-tight">
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
