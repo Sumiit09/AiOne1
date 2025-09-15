@@ -1,11 +1,21 @@
 import { Plus, Search, Zap, User, Mic, Send } from "lucide-react";
 import CleanLogo from "@/components/site/CleanLogo";
 import { useState } from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export default function Dashboard() {
   const [model, setModel] = useState("Assistant");
-  const models = ["Assistant","GPT-4o","GPT-4","GPT-3.5","Auto","Claude 3.5","Claude 3.7","DeepSeek","Perplexity"];
+  const models: { label: string; icon?: string }[] = [
+    { label: "Assistant" },
+    { label: "GPT-4o", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
+    { label: "GPT-4", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
+    { label: "GPT-3.5", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
+    { label: "Auto" },
+    { label: "Claude 3.5", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=128" },
+    { label: "Claude 3.7", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=128" },
+    { label: "DeepSeek", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F155e3342d99c45f6b0708d4d86279a05?format=webp&width=128" },
+    { label: "Perplexity", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5594ddc449394fc29f89497d6108ff38?format=webp&width=128" },
+  ];
   return (
     <div className="relative min-h-screen bg-[#0F1115] text-slate-200">
       {/* Left icon rail */}
@@ -36,17 +46,22 @@ export default function Dashboard() {
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/90 hover:bg-white/10 transition" aria-label="Select model">
+                  <button className="mx-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/90 hover:bg-white/10 transition" aria-label="Select model">
                     O
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="min-w-[220px] bg-[#0F1115] text-white border border-white/10">
+                <DropdownMenuContent side="bottom" align="start" sideOffset={8} collisionPadding={24} className="min-w-[240px] bg-[#0F1115] text-white border border-white/10 rounded-xl shadow-xl">
                   <DropdownMenuLabel>Select model</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup value={model} onValueChange={setModel}>
                     {models.map((m) => (
-                      <DropdownMenuRadioItem key={m} value={m}>
-                        {m}
+                      <DropdownMenuRadioItem key={m.label} value={m.label}>
+                        {m.icon ? (
+                          <img src={m.icon} alt="" className="mr-2 inline-block h-4 w-4 object-contain" />
+                        ) : (
+                          <span className="mr-2 inline-block h-3.5 w-3.5 rounded-full bg-white/60" />
+                        )}
+                        {m.label}
                       </DropdownMenuRadioItem>
                     ))}
                   </DropdownMenuRadioGroup>
@@ -54,7 +69,6 @@ export default function Dashboard() {
               </DropdownMenu>
               <span>ne</span>
             </div>
-            <span className="text-sm text-white/50">{model}</span>
           </div>
         </div>
       </div>
