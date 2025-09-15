@@ -27,7 +27,7 @@ export default function Dashboard() {
           <div className="flex-1 flex items-center">
             <nav className="flex flex-col gap-3">
             {[Plus, Search, Zap, User].map((Icon, i) => (
-              <button key={i} className="grid size-10 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/80 hover:bg-white/10 hover:text-white transition">
+              <button key={i} className="grid size-10 place-items-center text-white/80 hover:text-white transition">
                 <Icon className="h-4 w-4" />
               </button>
             ))}
