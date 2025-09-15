@@ -97,12 +97,18 @@ export default function Dashboard() {
       </div>
       {/* Feature chips below search (colorful) */}
       <div className="fixed inset-x-0 bottom-4 z-20 ml-20">
-        <div className="mx-auto max-w-3xl px-4 flex flex-wrap items-center justify-center gap-3">
-          <button className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white shadow hover:shadow-lg transition bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))]">
-            <Sparkles className="h-4 w-4" /> AiOne Prompt
+        <div className="mx-auto max-w-3xl px-4 flex flex-wrap items-center justify-center gap-2">
+          <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-sm text-white/90 hover:bg-white/10 transition">
+            <span className="grid h-5 w-5 place-items-center rounded-md bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white">
+              <Sparkles className="h-3 w-3" />
+            </span>
+            AiOne Prompt
           </button>
-          <button className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white shadow hover:shadow-lg transition bg-gradient-to-r from-violet-500 to-cyan-400">
-            <Bot className="h-4 w-4" /> AiOne Agents
+          <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-sm text-white/90 hover:bg-white/10 transition">
+            <span className="grid h-5 w-5 place-items-center rounded-md bg-gradient-to-r from-violet-500 to-cyan-400 text-white">
+              <Bot className="h-3 w-3" />
+            </span>
+            AiOne Agents
           </button>
         </div>
       </div>
