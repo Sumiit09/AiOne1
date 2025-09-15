@@ -22,13 +22,13 @@ export default function Dashboard() {
       <aside className="fixed left-0 top-0 z-20 h-screen w-20 bg-white/[0.03] backdrop-blur">
         <div className="flex h-full flex-col items-center py-4">
           <div className="mb-4">
-            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=128" alt="AiOne" className="h-6 w-6 object-contain" threshold={252} />
+            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=128" alt="AiOne" className="h-7 w-7 object-contain" threshold={252} />
           </div>
           <div className="flex-1 flex items-center">
             <nav className="flex flex-col gap-3">
             {[Plus, Search, Zap, User].map((Icon, i) => (
               <button key={i} className="grid size-10 place-items-center text-white/80 hover:text-white transition">
-                <Icon className="h-6 w-6" />
+                <Icon className="h-7 w-7" />
               </button>
             ))}
             </nav>
