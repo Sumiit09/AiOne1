@@ -41,12 +41,12 @@ export default function Dashboard() {
       {/* Title and model selector */}
       <div className="fixed left-14 top-4 z-30">
         <div className="pl-3">
-          <div className="inline-flex items-center gap-2">
+          <div className="inline-flex items-center gap-0">
             <div className="text-[24px] leading-[24px] font-semibold tracking-tight">
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="mx-1 inline-flex h-7 w-7 items-center justify-center text-white/90 transition" aria-label="Select model">
+                  <button className="inline-flex h-7 w-7 items-center justify-center text-white/90 transition" aria-label="Select model">
                     {models.find(m => m.label === model)?.icon ? (
                       <img src={models.find(m => m.label === model)!.icon!} alt="" className="h-3.5 w-3.5 object-contain" />
                     ) : (
