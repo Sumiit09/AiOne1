@@ -7,8 +7,8 @@ export default function Dashboard() {
       {/* Left icon rail */}
       <aside className="fixed left-0 top-0 z-20 h-screen w-14 border-r border-white/5 bg-[#0F1115]/80 backdrop-blur">
         <div className="flex h-full flex-col items-center gap-2 py-4">
-          <div className="mb-2 grid size-8 place-items-center rounded-lg bg-white/5 text-white/80">
-            <Sparkles className="h-4 w-4" />
+          <div className="mb-4">
+            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=128" alt="AiOne" className="h-8 w-8 object-contain" threshold={252} />
           </div>
           <nav className="mt-2 flex flex-col gap-3">
             {[Plus, Search, Zap, User].map((Icon, i) => (
