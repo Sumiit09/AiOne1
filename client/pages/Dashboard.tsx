@@ -1,4 +1,4 @@
-import { Plus, Search, Zap, User, Mic, Send } from "lucide-react";
+import { Plus, Search, Zap, User, Mic, Send, Bot, Sparkles } from "lucide-react";
 import CleanLogo from "@/components/site/CleanLogo";
 import { useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -77,8 +77,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Bottom chat input */}
-      <div className="fixed inset-x-0 bottom-16 z-30 ml-20">
+      {/* Search input (moved up) */}
+      <div className="ml-20 pt-24">
         <div className="mx-auto max-w-3xl px-4">
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
             <div className="flex items-center gap-2 p-2">
@@ -92,6 +92,15 @@ export default function Dashboard() {
                 <button className="grid size-8 place-items-center rounded-lg border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30"><Send className="h-4 w-4" /></button>
               </div>
             </div>
+          </div>
+          {/* Feature chips below search */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-white/80 hover:bg-white/10">
+              <Sparkles className="h-4 w-4" /> AiOne Prompt
+            </button>
+            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-white/80 hover:bg-white/10">
+              <Bot className="h-4 w-4" /> AiOne Agents
+            </button>
           </div>
         </div>
       </div>
