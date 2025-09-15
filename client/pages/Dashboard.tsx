@@ -19,7 +19,7 @@ export default function Dashboard() {
   return (
     <div className="relative min-h-screen bg-[#0F1115] text-slate-200">
       {/* Left icon rail */}
-      <aside className="fixed left-0 top-0 z-20 h-screen w-20 border-r border-white/5 bg-[#0F1115]/80 backdrop-blur">
+      <aside className="fixed left-0 top-0 z-20 h-screen w-20 border-r border-white/10 bg-white/[0.03] backdrop-blur">
         <div className="flex h-full flex-col items-center py-4">
           <div className="mb-4">
             <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=128" alt="AiOne" className="h-8 w-8 object-contain" threshold={252} />
