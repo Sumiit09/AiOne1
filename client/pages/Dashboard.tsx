@@ -39,7 +39,7 @@ export default function Dashboard() {
 
 
       {/* Title and model selector */}
-      <div className="fixed left-14 top-4 z-30">
+      <div className="fixed left-14 top-6 z-30">
         <div className="pl-3">
           <div className="inline-flex items-center gap-0">
             <div className="text-[24px] leading-[24px] font-semibold tracking-tight">
