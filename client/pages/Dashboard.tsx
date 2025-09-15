@@ -42,11 +42,11 @@ export default function Dashboard() {
       <div className="fixed left-14 top-4 z-30">
         <div className="pl-3">
           <div className="inline-flex items-center gap-2">
-            <div className="text-[32px] leading-[32px] font-semibold tracking-tight">
+            <div className="text-[24px] leading-[24px] font-semibold tracking-tight">
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="mx-1 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/90 hover:bg-white/10 transition" aria-label="Select model">
+                  <button className="mx-1 inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/90 hover:bg-white/10 transition" aria-label="Select model">
                     O
                   </button>
                 </DropdownMenuTrigger>
