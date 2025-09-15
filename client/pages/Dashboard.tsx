@@ -25,17 +25,17 @@ export default function Dashboard() {
 
 
       {/* Bottom chat input */}
-      <div className="fixed inset-x-0 bottom-8 z-30 ml-14">
+      <div className="fixed inset-x-0 bottom-16 z-30 ml-14">
         <div className="mx-auto max-w-3xl px-4">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
             <div className="flex items-center gap-2 p-2">
-              <button className="grid size-8 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 hover:bg-white/10"><Plus className="h-4 w-4" /></button>
+              <button className="grid size-8 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80 hover:bg-white/10"><Plus className="h-4 w-4" /></button>
               <input
                 placeholder="Ask me anything..."
-                className="flex-1 rounded-xl bg-transparent px-2 py-3 text-sm text-white/90 placeholder:text-white/40 focus:outline-none"
+                className="flex-1 rounded-2xl bg-transparent px-3 py-3 text-sm text-white/90 placeholder:text-white/40 focus:outline-none"
               />
               <div className="flex items-center gap-2">
-                <button className="grid size-8 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 hover:bg-white/10"><Mic className="h-4 w-4" /></button>
+                <button className="grid size-8 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-white/80 hover:bg-white/10"><Mic className="h-4 w-4" /></button>
                 <button className="grid size-8 place-items-center rounded-lg border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30"><Send className="h-4 w-4" /></button>
               </div>
             </div>
