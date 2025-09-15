@@ -17,15 +17,15 @@ export default function Layout({ children }: PropsWithChildren) {
     }
   }, [location.hash]);
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B0F1A] text-foreground relative">
-      <div className="fixed inset-0 z-0 pointer-events-none">
+    <div className={`min-h-screen flex flex-col ${isDashboard ? "bg-white" : "bg-[#0B0F1A]"} text-foreground relative`}>
+      {!isDashboard && (<div className="fixed inset-0 z-0 pointer-events-none">
         <Starfield />
         <DotGrid />
         <TwinkleField />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
-      </div>
+      </div>)}
       {!isDashboard && <Navbar />}
-      <main className="relative z-10 flex-1 text-white">{children}</main>
+      <main className={`relative z-10 flex-1 ${isDashboard ? "text-foreground" : "text-white"}`}>{children}</main>
       <Footer />
     </div>
   );
