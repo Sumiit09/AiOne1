@@ -26,7 +26,7 @@ export default function Layout({ children }: PropsWithChildren) {
       </div>)}
       {!isDashboard && <Navbar />}
       <main className={`relative z-10 flex-1 ${isDashboard ? "text-foreground" : "text-white"}`}>{children}</main>
-      <Footer />
+      {!isDashboard && <Footer />}
     </div>
   );
 }
