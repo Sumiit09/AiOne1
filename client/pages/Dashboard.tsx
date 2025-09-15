@@ -47,7 +47,11 @@ export default function Dashboard() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="mx-1 inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/90 hover:bg-white/10 transition" aria-label="Select model">
-                    O
+                    {models.find(m => m.label === model)?.icon ? (
+                      <img src={models.find(m => m.label === model)!.icon!} alt="" className="h-3.5 w-3.5 object-contain" />
+                    ) : (
+                      <span className="text-xs">O</span>
+                    )}
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="start" sideOffset={8} collisionPadding={24} className="min-w-[240px] bg-[#0F1115] text-white border border-white/10 rounded-xl shadow-xl">
