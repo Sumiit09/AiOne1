@@ -30,10 +30,9 @@ export default function Dashboard() {
 
       {/* Title and model selector */}
       <div className="ml-14">
-        <div className="mx-auto max-w-3xl px-4 pt-10 text-center">
-          <div className="inline-flex items-center gap-3">
-            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=128" alt="AiOne" className="h-7 w-7 object-contain" threshold={252} />
-            <div className="text-3xl md:text-4xl font-semibold tracking-tight">
+        <div className="mx-auto max-w-3xl px-4 pt-6 text-left">
+          <div className="inline-flex items-center gap-2">
+            <div className="text-[32px] font-semibold tracking-tight">
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
