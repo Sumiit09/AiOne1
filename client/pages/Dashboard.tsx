@@ -46,7 +46,7 @@ export default function Dashboard() {
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="mx-1 inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/90 hover:bg-white/10 transition" aria-label="Select model">
+                  <button className="mx-1 inline-flex h-7 w-7 items-center justify-center text-white/90 transition" aria-label="Select model">
                     {models.find(m => m.label === model)?.icon ? (
                       <img src={models.find(m => m.label === model)!.icon!} alt="" className="h-3.5 w-3.5 object-contain" />
                     ) : (
