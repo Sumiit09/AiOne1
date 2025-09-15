@@ -21,12 +21,6 @@ export default function Dashboard() {
         </div>
       </aside>
 
-      {/* Main canvas area */}
-      <div className="ml-14">
-        <div className="mx-auto max-w-5xl px-4 pt-8 pb-28">
-          <div className="h-[70vh] w-full rounded-2xl border border-white/5 bg-white/[0.02]" />
-        </div>
-      </div>
 
       {/* Bottom chat input */}
       <div className="fixed inset-x-0 bottom-8 z-30 ml-14">
