@@ -20,7 +20,7 @@ export default function Dashboard() {
     { label: "Perplexity", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5594ddc449394fc29f89497d6108ff38?format=webp&width=128" },
   ];
   return (
-    <div className="relative min-h-screen bg-[#0F1115] text-slate-200">
+    <div className="relative min-h-screen bg-[#0F1115] text-slate-200 font-sans">
       {/* Left icon rail */}
       <aside className="fixed left-0 top-0 z-20 h-screen w-20 bg-white/[0.03] backdrop-blur">
         <div className="flex h-full flex-col items-center py-4">
