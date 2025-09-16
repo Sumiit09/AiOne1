@@ -22,7 +22,7 @@ export default function Dashboard() {
       <aside className="fixed left-0 top-0 z-20 h-screen w-20 bg-white/[0.03] backdrop-blur">
         <div className="flex h-full flex-col items-center py-4">
           <div className="mb-4">
-            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=256" alt="AiOne" className="h-9 w-9 object-contain" threshold={252} />
+            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=512" alt="AiOne" className="h-10 w-10 object-contain" threshold={252} />
           </div>
           <div className="flex-1 flex items-center">
             <nav className="flex flex-col gap-3">
@@ -42,15 +42,15 @@ export default function Dashboard() {
       <div className="fixed left-20 top-5 z-30">
         <div className="pl-3">
           <div className="inline-flex items-center gap-0">
-            <div className="text-[24px] leading-[24px] font-semibold tracking-tight">
+            <div className="text-[28px] leading-[28px] font-semibold tracking-tight">
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className={`inline-flex items-center justify-center text-white/90 transition leading-[24px] ${models.find(m => m.label === model)?.icon ? 'mx-0.5' : ''}`} aria-label="Select model">
+                  <button className={`inline-flex items-center justify-center text-white/90 transition leading-[28px] ${models.find(m => m.label === model)?.icon ? 'mx-0.5' : ''}`} aria-label="Select model">
                     {models.find(m => m.label === model)?.icon ? (
                       <img src={models.find(m => m.label === model)!.icon!} alt="" className="h-3.5 w-3.5 object-contain" />
                     ) : (
-                      <span className="font-semibold text-[24px] leading-[24px]">O</span>
+                      <span className="font-semibold text-[28px] leading-[28px]">O</span>
                     )}
                   </button>
                 </DropdownMenuTrigger>
