@@ -57,7 +57,7 @@ export default function Dashboard() {
                     )}
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="bottom" align="start" sideOffset={8} collisionPadding={24} className="min-w-[240px] bg-[#0F1115] text-white border border-white/10 rounded-xl shadow-xl">
+                <DropdownMenuContent side="bottom" align="start" sideOffset={12} collisionPadding={40} className="min-w-[240px] max-h-64 overflow-y-auto p-1 text-sm bg-[#0F1115] text-white border border-white/10 rounded-xl shadow-xl">
                   <DropdownMenuLabel>Select model</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuRadioGroup value={model} onValueChange={setModel}>
