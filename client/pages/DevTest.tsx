@@ -5,8 +5,8 @@ export default function DevTest() {
   async function handleInsert() {
     try {
       const { error } = await supabase
-        .from("queries")
-        .insert([{ user_id: "test_user", prompt: "Hello", response: "World" }]);
+        .from("prompts")
+        .insert([{ text: "Hello from Builder.io test insert" }]);
 
       if (error) throw error;
       alert("✅ Data inserted successfully");
