@@ -5,7 +5,7 @@ export default function DevTest() {
   async function handleInsert() {
     const { data, error } = await supabase
       .from("prompts")
-      .insert([{ text: "Builder test", created_at: new Date() }]);
+      .insert([{ text: "Builder test insert", created_at: new Date() }]);
 
     if (error) {
       alert("Insert failed: " + JSON.stringify(error, null, 2));
