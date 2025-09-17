@@ -3,16 +3,16 @@ import { supabase } from "@/lib/supabase";
 
 export default function DevTest() {
   async function handleInsert() {
-    try {
-      const { error } = await supabase
-        .from("prompts")
-        .insert([{ text: "Hello from Builder.io test insert" }]);
+    const { data, error } = await supabase
+      .from("prompts")
+      .insert([{ text: "Builder test", created_at: new Date() }]);
 
-      if (error) throw error;
-      alert("✅ Data inserted successfully");
-    } catch (err) {
-      console.error("Supabase insert error:", err);
-      alert("❌ Failed to insert. Check console.");
+    if (error) {
+      alert("Insert failed: " + JSON.stringify(error, null, 2));
+      console.error("Insert failed:", error);
+    } else {
+      alert("Insert success!");
+      console.log("Inserted data:", data);
     }
   }
 
