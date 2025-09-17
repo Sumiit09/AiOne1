@@ -1,41 +1,18 @@
 import React from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function DevTest() {
   async function handleInsert() {
     try {
-      const url = import.meta.env.VITE_SUPABASE_URL;
-      const anon = import.meta.env.VITE_SUPABASE_ANON_KEY;
-      if (!url || !anon) {
-        console.error("Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY env vars");
-        alert("Supabase env variables are missing. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.");
-        return;
-      }
+      const { error } = await supabase
+        .from("queries")
+        .insert([{ user_id: "test_user", prompt: "Hello", response: "World" }]);
 
-      const res = await fetch(`${url}/rest/v1/queries`, {
-        method: "POST",
-        headers: {
-          "apikey": anon,
-          "Authorization": `Bearer ${anon}`,
-          "Content-Type": "application/json",
-          "Prefer": "return=representation",
-        },
-        body: JSON.stringify([
-          {
-            user_id: "test_user",
-            prompt: "Hello",
-            response: "World",
-          },
-        ]),
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || `HTTP ${res.status}`);
-      }
-
+      if (error) throw error;
       alert("✅ Data inserted successfully");
     } catch (err) {
       console.error("Supabase insert error:", err);
+      alert("❌ Failed to insert. Check console.");
     }
   }
 
