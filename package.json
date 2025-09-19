@@ -108,7 +108,8 @@
   "pnpm": {
     "overrides": {
       "esbuild": "latest",
-      "@swc/core": "latest"
+      "@swc/core": "latest",
+      "three-mesh-bvh": "0.8.0"
     },
     "scripts-hoisting-enabled": false
   }
