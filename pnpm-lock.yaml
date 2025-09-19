@@ -17,6 +17,9 @@ importers:
       express:
         specifier: ^5.1.0
         version: 5.1.0
+      three-mesh-bvh:
+        specifier: 0.8.0
+        version: 0.8.0(three@0.176.0)
       zod:
         specifier: ^3.25.76
         version: 3.25.76
@@ -2668,6 +2671,11 @@ packages:
     deprecated: Deprecated due to three.js version incompatibility. Please use v0.8.0, instead.
     peerDependencies:
       three: '>= 0.151.0'
+
+  three-mesh-bvh@0.8.0:
+    resolution: {integrity: sha512-Q3Rx3Ja2d/sqNW965wcoqr9NbRGbolk8jrKvSVu1zO5+Vv15vwLfwiTes+jssrd1Odq2+HQhq99Nknwp0JfISg==}
+    peerDependencies:
+      three: '>= 0.158.0'
 
   three-stdlib@2.36.0:
     resolution: {integrity: sha512-kv0Byb++AXztEGsULgMAs8U2jgUdz6HPpAB/wDJnLiLlaWQX2APHhiTJIN7rqW+Of0eRgcp7jn05U1BsCP3xBA==}
@@ -5387,6 +5395,10 @@ snapshots:
       any-promise: 1.3.0
 
   three-mesh-bvh@0.7.8(three@0.176.0):
+    dependencies:
+      three: 0.176.0
+
+  three-mesh-bvh@0.8.0(three@0.176.0):
     dependencies:
       three: 0.176.0
 
