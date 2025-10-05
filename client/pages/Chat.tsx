@@ -53,12 +53,12 @@ export default function Chat() {
     setMessages(nextMessages);
     setSending(true);
     try {
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      const key = apiKey.trim();
+      if (key) headers.Authorization = `Bearer ${key}`;
       const res = await fetch("/api/gemini/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey.trim()}`,
-        },
+        headers,
         body: JSON.stringify({ model, messages: nextMessages }),
       });
       const data = await res.json();
