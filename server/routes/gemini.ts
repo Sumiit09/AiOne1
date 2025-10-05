@@ -49,10 +49,13 @@ function toGeminiContents(messages: ChatMessage[]): {
 export const handleGeminiChat: RequestHandler = async (req, res) => {
   try {
     const auth = req.header("authorization") || req.header("Authorization");
-    if (!auth || !auth.startsWith("Bearer ")) {
-      return res.status(401).json({ error: "Missing Authorization Bearer <GEMINI_API_KEY>" });
+    let apiKey = auth && auth.startsWith("Bearer ") ? auth.slice("Bearer ".length).trim() : "";
+    if (!apiKey) {
+      apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY || "";
     }
-    const apiKey = auth.slice("Bearer ".length).trim();
+    if (!apiKey) {
+      return res.status(401).json({ error: "Missing API key. Provide Authorization: Bearer <GEMINI_API_KEY> or set GEMINI_API_KEY in server env." });
+    }
 
     const { model, messages } = req.body as ChatRequestBody;
     if (!model || !Array.isArray(messages) || messages.length === 0) {
