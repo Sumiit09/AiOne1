@@ -62,12 +62,11 @@ export default function Dashboard() {
         }),
       });
 
+      const data = await res.json();
       if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData?.error || `HTTP ${res.status}`);
+        throw new Error(data?.error || `HTTP ${res.status}`);
       }
 
-      const data = await res.json();
       const reply = (data?.reply as string) || "No response";
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
     } catch (e: any) {
