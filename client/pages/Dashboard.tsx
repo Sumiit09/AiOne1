@@ -83,6 +83,15 @@ export default function Dashboard() {
 
     const userMsg: Message = { role: "user", content: originalText };
     setMessages((prev) => [...prev, userMsg]);
+
+    // Show enhanced prompt if AiOne enabled
+    if (aiOneEnabled && finalPrompt !== originalText) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: `✨ Enhanced prompt:\n\n${finalPrompt}` },
+      ]);
+    }
+
     setSending(true);
 
     try {
