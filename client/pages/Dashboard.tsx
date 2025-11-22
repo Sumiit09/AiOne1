@@ -47,12 +47,11 @@ export default function Dashboard() {
     const text = input.trim();
     if (!text || !isGeminiModel || sending) return;
 
-    setInput("");
     const originalText = text;
     let finalPrompt = text;
 
     // If AiOne Prompts mode is enabled, enhance the prompt first
-    if (aiOneEnabled) {
+    if (aiOneEnabled && !input.startsWith("✨")) {
       setSending(true);
       try {
         const apiModel = MODEL_IDS[model];
@@ -75,23 +74,21 @@ export default function Dashboard() {
         const enhanceData = await enhanceRes.json();
         if (enhanceRes.ok) {
           finalPrompt = (enhanceData?.reply as string) || originalText;
+          // Show enhanced prompt in input field for review
+          setInput(`✨ ${finalPrompt}`);
+          setSending(false);
+          return; // Wait for user to click send again
         }
       } catch {
-        // If enhancement fails, use original prompt
+        // If enhancement fails, continue with original
       }
+      setSending(false);
     }
 
+    // User confirmed with enhanced prompt or AiOne disabled
+    setInput("");
     const userMsg: Message = { role: "user", content: originalText };
     setMessages((prev) => [...prev, userMsg]);
-
-    // Show enhanced prompt if AiOne enabled
-    if (aiOneEnabled && finalPrompt !== originalText) {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: `✨ Enhanced prompt:\n\n${finalPrompt}` },
-      ]);
-    }
-
     setSending(true);
 
     try {
