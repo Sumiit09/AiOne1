@@ -14,7 +14,6 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Login from "./pages/Login";
-import DevTest from "./pages/DevTest";
 import Dashboard from "./pages/Dashboard";
 import Chat from "./pages/Chat";
 
