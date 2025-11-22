@@ -1,10 +1,26 @@
 import { Plus, Search, Zap, User, Mic, Send, Bot, Sparkles } from "lucide-react";
 import CleanLogo from "@/components/site/CleanLogo";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
+interface Message {
+  role: "user" | "assistant";
+  content: string;
+}
+
+const MODEL_IDS: Record<string, string> = {
+  "Gemini 1.5 Pro": "gemini-1.5-pro",
+  "Gemini 2.0 Flash": "gemini-2.0-flash",
+  "Gemini 2.5 Pro": "gemini-2.5-pro",
+};
+
 export default function Dashboard() {
-  const [model, setModel] = useState("Assistant");
+  const [model, setModel] = useState("Gemini 2.5 Pro");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [sending, setSending] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
   const models: { label: string; icon?: string }[] = [
     { label: "Assistant" },
     { label: "GPT-4o", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
@@ -19,8 +35,52 @@ export default function Dashboard() {
     { label: "DeepSeek", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F155e3342d99c45f6b0708d4d86279a05?format=webp&width=128" },
     { label: "Perplexity", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5594ddc449394fc29f89497d6108ff38?format=webp&width=128" },
   ];
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const isGeminiModel = MODEL_IDS[model];
+
+  async function handleSend() {
+    const text = input.trim();
+    if (!text || !isGeminiModel || sending) return;
+
+    setInput("");
+    const userMsg: Message = { role: "user", content: text };
+    setMessages((prev) => [...prev, userMsg]);
+    setSending(true);
+
+    try {
+      const apiModel = MODEL_IDS[model];
+      const res = await fetch("/api/gemini/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: apiModel,
+          messages: [...messages, userMsg],
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || "Request failed");
+      }
+
+      const reply = (data?.reply as string) || "No response";
+      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+    } catch (e: any) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: `Error: ${e?.message || "Unknown error"}` },
+      ]);
+    } finally {
+      setSending(false);
+    }
+  }
+
   return (
-    <div className="relative min-h-screen bg-[#0F1115] text-slate-200 font-sans">
+    <div className="relative min-h-screen bg-[#0F1115] text-slate-200 font-sans flex flex-col">
       {/* Left icon rail */}
       <aside className="fixed left-0 top-0 z-20 h-screen w-20 bg-white/[0.03] backdrop-blur">
         <div className="flex h-full flex-col items-center py-4">
@@ -39,7 +99,6 @@ export default function Dashboard() {
           <div className="mt-auto pb-4 text-[10px] text-white/40">v1.0</div>
         </div>
       </aside>
-
 
       {/* Title and model selector */}
       <div className="fixed left-20 top-5 z-30">
@@ -80,19 +139,53 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Search input and chips at bottom, stacked */}
+      {/* Chat messages area */}
+      {isGeminiModel && (
+        <div className="flex-1 ml-20 mt-20 mb-32 px-4 overflow-y-auto">
+          <div className="mx-auto max-w-3xl space-y-4">
+            {messages.length === 0 && (
+              <div className="grid place-items-center h-64">
+                <p className="text-white/50">Start a conversation with {model}...</p>
+              </div>
+            )}
+            {messages.map((msg, i) => (
+              <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div className={`rounded-lg px-4 py-2 max-w-xs lg:max-w-md ${msg.role === "user" ? "bg-emerald-500/20 text-emerald-100" : "bg-white/10 text-white/90"}`}>
+                  <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
+                </div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+        </div>
+      )}
+
+      {/* Chat input at bottom */}
       <div className="fixed inset-x-0 bottom-10 z-30 ml-20">
         <div className="mx-auto max-w-3xl px-4">
+          {!isGeminiModel && (
+            <p className="text-center text-sm text-white/40 mb-2">Selected model: {model} (Gemini models only for now)</p>
+          )}
           <div className="rounded-full border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
             <div className="flex items-center gap-2 p-2">
               <button className="grid size-8 place-items-center text-white/80 hover:text-white"><Plus className="h-4 w-4" /></button>
               <input
                 placeholder="Ask me anything..."
-                className="flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 focus:outline-none"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                disabled={!isGeminiModel || sending}
+                className="flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 focus:outline-none disabled:opacity-50"
               />
               <div className="flex items-center gap-2">
                 <button className="grid size-8 place-items-center text-white/80 hover:text-white"><Mic className="h-4 w-4" /></button>
-                <button className="grid size-8 place-items-center rounded-full border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30"><Send className="h-4 w-4" /></button>
+                <button
+                  onClick={handleSend}
+                  disabled={!isGeminiModel || sending || !input.trim()}
+                  className="grid size-8 place-items-center rounded-full border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
               </div>
             </div>
           </div>
