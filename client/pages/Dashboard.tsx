@@ -9,9 +9,9 @@ interface Message {
 }
 
 const MODEL_IDS: Record<string, string> = {
-  "Gemini 1.5 Pro": "gemini-1.5-pro",
-  "Gemini 2.0 Flash": "gemini-2.0-flash",
-  "Gemini 2.5 Pro": "gemini-2.5-pro",
+  "Gemini 1.5 Pro": "gemini-1.5-pro-latest",
+  "Gemini 2.0 Flash": "gemini-2.0-flash-latest",
+  "Gemini 2.5 Pro": "gemini-2.5-pro-latest",
 };
 
 export default function Dashboard() {
