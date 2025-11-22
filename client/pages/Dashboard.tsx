@@ -48,7 +48,40 @@ export default function Dashboard() {
     if (!text || !isGeminiModel || sending) return;
 
     setInput("");
-    const userMsg: Message = { role: "user", content: text };
+    const originalText = text;
+    let finalPrompt = text;
+
+    // If AiOne Prompts mode is enabled, enhance the prompt first
+    if (aiOneEnabled) {
+      setSending(true);
+      try {
+        const apiModel = MODEL_IDS[model];
+        const enhanceRes = await fetch("/api/gemini/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: apiModel,
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You are a prompt optimizer. Given a user's input, enhance it to be more detailed, specific, and clear so the AI can provide the best possible response. Return ONLY the enhanced prompt, nothing else.",
+              },
+              { role: "user", content: originalText },
+            ],
+          }),
+        });
+
+        const enhanceData = await enhanceRes.json();
+        if (enhanceRes.ok) {
+          finalPrompt = (enhanceData?.reply as string) || originalText;
+        }
+      } catch {
+        // If enhancement fails, use original prompt
+      }
+    }
+
+    const userMsg: Message = { role: "user", content: originalText };
     setMessages((prev) => [...prev, userMsg]);
     setSending(true);
 
@@ -59,7 +92,7 @@ export default function Dashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: apiModel,
-          messages: [...messages, userMsg],
+          messages: [...messages, { role: "user", content: finalPrompt }],
         }),
       });
 
