@@ -1,7 +1,24 @@
-import { Plus, Search, Zap, User, Mic, Send, Bot, Sparkles } from "lucide-react";
+import {
+  Plus,
+  Search,
+  Zap,
+  User,
+  Mic,
+  Send,
+  Bot,
+  Sparkles,
+} from "lucide-react";
 import CleanLogo from "@/components/site/CleanLogo";
 import { useEffect, useRef, useState } from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Message {
   role: "user" | "assistant";
@@ -24,17 +41,47 @@ export default function Dashboard() {
 
   const models: { label: string; icon?: string }[] = [
     { label: "Assistant" },
-    { label: "GPT-4o", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
-    { label: "GPT-4", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
-    { label: "GPT-3.5", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128" },
-    { label: "Gemini 1.5 Pro", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=128" },
-    { label: "Gemini 2.0 Flash", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=128" },
-    { label: "Gemini 2.5 Pro", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=128" },
+    {
+      label: "GPT-4o",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128",
+    },
+    {
+      label: "GPT-4",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128",
+    },
+    {
+      label: "GPT-3.5",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=128",
+    },
+    {
+      label: "Gemini 1.5 Pro",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=128",
+    },
+    {
+      label: "Gemini 2.0 Flash",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=128",
+    },
+    {
+      label: "Gemini 2.5 Pro",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2Fb4cfebee4d174f30958fb52ffc9e8cda?format=webp&width=128",
+    },
     { label: "Auto" },
-    { label: "Claude 3.5", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=128" },
-    { label: "Claude 3.7", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=128" },
-    { label: "DeepSeek", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F155e3342d99c45f6b0708d4d86279a05?format=webp&width=128" },
-    { label: "Perplexity", icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5594ddc449394fc29f89497d6108ff38?format=webp&width=128" },
+    {
+      label: "Claude 3.5",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=128",
+    },
+    {
+      label: "Claude 3.7",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F9e9ce3aa293948fd9cbcdca5ff2f75b5?format=webp&width=128",
+    },
+    {
+      label: "DeepSeek",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F155e3342d99c45f6b0708d4d86279a05?format=webp&width=128",
+    },
+    {
+      label: "Perplexity",
+      icon: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F5594ddc449394fc29f89497d6108ff38?format=webp&width=128",
+    },
   ];
 
   useEffect(() => {
@@ -112,7 +159,10 @@ export default function Dashboard() {
     } catch (e: any) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: `Error: ${e?.message || "Unknown error"}` },
+        {
+          role: "assistant",
+          content: `Error: ${e?.message || "Unknown error"}`,
+        },
       ]);
     } finally {
       setSending(false);
@@ -125,15 +175,23 @@ export default function Dashboard() {
       <aside className="fixed left-0 top-0 z-20 h-screen w-20 bg-white/[0.03] backdrop-blur">
         <div className="flex h-full flex-col items-center py-4">
           <div className="mb-4">
-            <CleanLogo src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=512" alt="AiOne" className="h-10 w-10 object-contain" threshold={252} />
+            <CleanLogo
+              src="https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F48dc2d1e1a294e36ac04e854e5342cfb?format=webp&width=512"
+              alt="AiOne"
+              className="h-10 w-10 object-contain"
+              threshold={252}
+            />
           </div>
           <div className="flex-1 flex items-center">
             <nav className="flex flex-col gap-3">
-            {[Plus, Search, Zap, User].map((Icon, i) => (
-              <button key={i} className="grid size-10 place-items-center text-white/80 hover:text-white transition">
-                <Icon className="h-7 w-7" />
-              </button>
-            ))}
+              {[Plus, Search, Zap, User].map((Icon, i) => (
+                <button
+                  key={i}
+                  className="grid size-10 place-items-center text-white/80 hover:text-white transition"
+                >
+                  <Icon className="h-7 w-7" />
+                </button>
+              ))}
             </nav>
           </div>
           <div className="mt-auto pb-4 text-[10px] text-white/40">v1.0</div>
@@ -148,22 +206,44 @@ export default function Dashboard() {
               <span>Ai</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className={`inline-flex items-center justify-center text-white/90 transition leading-[28px] ${models.find(m => m.label === model)?.icon ? 'mx-0.5' : ''}`} aria-label="Select model">
-                    {models.find(m => m.label === model)?.icon ? (
-                      <img src={models.find(m => m.label === model)!.icon!} alt="" className="h-3.5 w-3.5 object-contain" />
+                  <button
+                    className={`inline-flex items-center justify-center text-white/90 transition leading-[28px] ${models.find((m) => m.label === model)?.icon ? "mx-0.5" : ""}`}
+                    aria-label="Select model"
+                  >
+                    {models.find((m) => m.label === model)?.icon ? (
+                      <img
+                        src={models.find((m) => m.label === model)!.icon!}
+                        alt=""
+                        className="h-3.5 w-3.5 object-contain"
+                      />
                     ) : (
-                      <span className="font-semibold text-[28px] leading-[28px]">O</span>
+                      <span className="font-semibold text-[28px] leading-[28px]">
+                        O
+                      </span>
                     )}
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent side="bottom" align="start" sideOffset={12} collisionPadding={40} className="min-w-[240px] max-h-64 overflow-y-auto p-1 text-sm bg-[#0F1115] text-white border border-white/10 rounded-xl shadow-xl">
+                <DropdownMenuContent
+                  side="bottom"
+                  align="start"
+                  sideOffset={12}
+                  collisionPadding={40}
+                  className="min-w-[240px] max-h-64 overflow-y-auto p-1 text-sm bg-[#0F1115] text-white border border-white/10 rounded-xl shadow-xl"
+                >
                   <DropdownMenuLabel>Select model</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuRadioGroup value={model} onValueChange={setModel}>
+                  <DropdownMenuRadioGroup
+                    value={model}
+                    onValueChange={setModel}
+                  >
                     {models.map((m) => (
                       <DropdownMenuRadioItem key={m.label} value={m.label}>
                         {m.icon ? (
-                          <img src={m.icon} alt="" className="mr-2 inline-block h-4 w-4 object-contain" />
+                          <img
+                            src={m.icon}
+                            alt=""
+                            className="mr-2 inline-block h-4 w-4 object-contain"
+                          />
                         ) : (
                           <span className="mr-2 inline-block h-3.5 w-3.5 rounded-full bg-white/60" />
                         )}
@@ -185,21 +265,37 @@ export default function Dashboard() {
           <div className="mx-auto max-w-3xl space-y-4">
             {messages.length === 0 && (
               <div className="grid place-items-center h-64">
-                <p className="text-white/50">Start a conversation with {model}...</p>
+                <p className="text-white/50">
+                  Start a conversation with {model}...
+                </p>
               </div>
             )}
             {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`rounded-lg px-4 py-2 max-w-xs lg:max-w-md ${msg.role === "user" ? "bg-emerald-500/20 text-emerald-100" : "bg-white/10 text-white/90"}`}>
+              <div
+                key={i}
+                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  className={`rounded-lg px-4 py-2 max-w-xs lg:max-w-md ${msg.role === "user" ? "bg-emerald-500/20 text-emerald-100" : "bg-white/10 text-white/90"}`}
+                >
                   <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
                 </div>
               </div>
             ))}
             {sending && (
               <div className="flex gap-1 items-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "0ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "150ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "300ms" }} />
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce"
+                  style={{ animationDelay: "0ms" }}
+                />
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce"
+                  style={{ animationDelay: "150ms" }}
+                />
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce"
+                  style={{ animationDelay: "300ms" }}
+                />
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -211,11 +307,15 @@ export default function Dashboard() {
       <div className="fixed inset-x-0 bottom-10 z-30 ml-20">
         <div className="mx-auto max-w-3xl px-4">
           {!isGeminiModel && (
-            <p className="text-center text-sm text-white/40 mb-2">Selected model: {model} (Gemini models only for now)</p>
+            <p className="text-center text-sm text-white/40 mb-2">
+              Selected model: {model} (Gemini models only for now)
+            </p>
           )}
           <div className="rounded-full border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
             <div className="flex items-center gap-2 p-2">
-              <button className="grid size-8 place-items-center text-white/80 hover:text-white"><Plus className="h-4 w-4" /></button>
+              <button className="grid size-8 place-items-center text-white/80 hover:text-white">
+                <Plus className="h-4 w-4" />
+              </button>
               <input
                 placeholder="Ask me anything..."
                 value={input}
@@ -225,7 +325,9 @@ export default function Dashboard() {
                 className="flex-1 rounded-full bg-transparent px-4 py-3 text-sm text-white/90 placeholder:text-white/40 focus:outline-none disabled:opacity-50"
               />
               <div className="flex items-center gap-2">
-                <button className="grid size-8 place-items-center text-white/80 hover:text-white"><Mic className="h-4 w-4" /></button>
+                <button className="grid size-8 place-items-center text-white/80 hover:text-white">
+                  <Mic className="h-4 w-4" />
+                </button>
                 <button
                   onClick={handleSend}
                   disabled={!isGeminiModel || sending || !input.trim()}
