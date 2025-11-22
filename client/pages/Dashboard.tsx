@@ -231,7 +231,14 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-sm text-white/90 hover:bg-white/10 transition">
+            <button
+              onClick={() => setAiOneEnabled(!aiOneEnabled)}
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition ${
+                aiOneEnabled
+                  ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-100"
+                  : "border-white/10 bg-white/[0.02] text-white/90 hover:bg-white/10"
+              }`}
+            >
               <span className="grid h-5 w-5 place-items-center rounded-md bg-gradient-to-r from-[hsl(var(--brand-start))] to-[hsl(var(--brand-end))] text-white">
                 <Sparkles className="h-3 w-3" />
               </span>
