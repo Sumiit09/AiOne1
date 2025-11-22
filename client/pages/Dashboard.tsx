@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [aiOneEnabled, setAiOneEnabled] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const models: { label: string; icon?: string }[] = [
