@@ -151,7 +151,8 @@ export default function Dashboard() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data?.error || `HTTP ${res.status}`);
+        const errMsg = data?.details || data?.error || `HTTP ${res.status}`;
+        throw new Error(errMsg);
       }
 
       const reply = (data?.reply as string) || "No response";
