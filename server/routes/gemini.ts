@@ -101,11 +101,17 @@ export const handleGeminiChat: RequestHandler = async (req, res) => {
       data = await resp.json();
     } catch {
       const text = await resp.text();
-      return res.status(502).json({ error: "Gemini API error", details: text });
+      console.error("Gemini API JSON parse error:", text);
+      return res.status(502).json({ error: "Gemini API error (parse failed)", details: text });
     }
 
     if (!resp.ok) {
-      return res.status(502).json({ error: "Gemini API error", details: data });
+      console.error("Gemini API error response:", JSON.stringify(data, null, 2));
+      return res.status(502).json({
+        error: "Gemini API error",
+        status: resp.status,
+        details: data?.error?.message || JSON.stringify(data)
+      });
     }
     const text =
       data?.candidates?.[0]?.content?.parts
