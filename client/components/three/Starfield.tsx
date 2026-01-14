@@ -1,6 +1,5 @@
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
-import { canUseWebGL } from "@/lib/webgl-utils";
 import { CanvasErrorBoundary } from "@/components/CanvasErrorBoundary";
 
 function StarfieldContent() {
@@ -26,12 +25,6 @@ function StarfieldFallback() {
 }
 
 export default function Starfield() {
-  const hasWebGL = canUseWebGL();
-
-  if (!hasWebGL) {
-    return <StarfieldFallback />;
-  }
-
   return (
     <div className="absolute inset-0 -z-10 pointer-events-none">
       <CanvasErrorBoundary fallback={<StarfieldFallback />}>

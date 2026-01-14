@@ -3,7 +3,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, Html } from "@react-three/drei";
 import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
-import { canUseWebGL } from "@/lib/webgl-utils";
 import { CanvasErrorBoundary } from "@/components/CanvasErrorBoundary";
 
 function Planet({ url, rx, ry, size, speed, phase = 0, opacity = 0.6 }: { url: string; rx: number; ry: number; size: number; speed: number; phase?: number; opacity?: number; }) {
@@ -131,12 +130,6 @@ function SolarSystemFallback() {
 }
 
 export default function SolarSystem() {
-  const hasWebGL = canUseWebGL();
-
-  if (!hasWebGL) {
-    return <SolarSystemFallback />;
-  }
-
   return (
     <div className="relative w-full h-52 md:h-64 pointer-events-none hidden md:block motion-reduce:hidden">
       <CanvasErrorBoundary fallback={<SolarSystemFallback />}>
