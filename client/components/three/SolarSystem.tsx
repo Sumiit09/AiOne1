@@ -3,6 +3,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, Html } from "@react-three/drei";
 import { Group, SRGBColorSpace, Texture, TextureLoader } from "three";
 import CleanLogo from "@/components/site/CleanLogo";
+import { canUseWebGL } from "@/lib/webgl-utils";
+import { CanvasErrorBoundary } from "@/components/CanvasErrorBoundary";
 
 function Planet({ url, rx, ry, size, speed, phase = 0, opacity = 0.6 }: { url: string; rx: number; ry: number; size: number; speed: number; phase?: number; opacity?: number; }) {
   const group = useRef<Group>(null);
@@ -81,7 +83,7 @@ function CenterLabel() {
   );
 }
 
-export default function SolarSystem() {
+function SolarSystemContent() {
   const logos = {
     chatgpt: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F34fe699879554fb18441f2acd2a76d8f?format=webp&width=800",
     meta: "https://cdn.builder.io/api/v1/image/assets%2F6fc548d35f304469a280fa5ba55607c7%2F87bc619e8b0342ed98d39248290cd3f8?format=webp&width=800",
@@ -93,29 +95,53 @@ export default function SolarSystem() {
   } as const;
 
   const keys = Object.keys(logos) as (keyof typeof logos)[];
-  const rx = 8.0; // horizontal radius (ultra wide)
-  const ry = 1.4; // vertical radius (smaller to create ellipse)
+  const rx = 8.0;
+  const ry = 1.4;
   const speed = 0.18;
 
   return (
+    <Canvas gl={{ antialias: true }} dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 50 }}>
+      <ambientLight intensity={0.35} />
+      <directionalLight position={[4, 2, 6]} intensity={0.55} color="#cfe9ff" />
+      <CenterLabel />
+      {keys.map((k, i) => (
+        <Planet
+          key={k}
+          url={logos[k]}
+          rx={rx}
+          ry={ry}
+          size={0.6}
+          speed={speed}
+          phase={(i / keys.length) * Math.PI * 2}
+          opacity={0.6}
+        />
+      ))}
+    </Canvas>
+  );
+}
+
+function SolarSystemFallback() {
+  return (
+    <div className="relative w-full h-52 md:h-64 pointer-events-none hidden md:block motion-reduce:hidden bg-gradient-to-b from-blue-900/10 to-transparent flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-white/40 text-sm">3D content unavailable</div>
+      </div>
+    </div>
+  );
+}
+
+export default function SolarSystem() {
+  const hasWebGL = canUseWebGL();
+
+  if (!hasWebGL) {
+    return <SolarSystemFallback />;
+  }
+
+  return (
     <div className="relative w-full h-52 md:h-64 pointer-events-none hidden md:block motion-reduce:hidden">
-      <Canvas gl={{ antialias: true }} dpr={[1, 2]} camera={{ position: [0, 0, 6], fov: 50 }}>
-        <ambientLight intensity={0.35} />
-        <directionalLight position={[4, 2, 6]} intensity={0.55} color="#cfe9ff" />
-        <CenterLabel />
-        {keys.map((k, i) => (
-          <Planet
-            key={k}
-            url={logos[k]}
-            rx={rx}
-            ry={ry}
-            size={0.6}
-            speed={speed}
-            phase={(i / keys.length) * Math.PI * 2}
-            opacity={0.6}
-          />
-        ))}
-      </Canvas>
+      <CanvasErrorBoundary fallback={<SolarSystemFallback />}>
+        <SolarSystemContent />
+      </CanvasErrorBoundary>
     </div>
   );
 }
